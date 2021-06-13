@@ -13,4 +13,4 @@ Project is created with:
 * Vanilla Javascript
 	
 ## HowToSee?
-Project is hosted in Github-Pages
+Project is hosted in Github-Pages : https://qnosin.github.io/Memory-App/
