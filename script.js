@@ -1,5 +1,6 @@
 const arr = ['pear.svg', 'plum.svg', 'tomato.svg', 'watermelon.svg']
 const cards = document.querySelectorAll('.card');
+const board = document.querySelector('.board');
 //variable to check if there are more then 2 card of 4 types
 let a = 0;
 let b = 0
@@ -30,7 +31,6 @@ cards.forEach(n => {
             } else {
                 notMatch(first, second)
             }
-
         }
     })
 })
@@ -39,37 +39,32 @@ function randomWalpaper(card) {
     const random = Math.floor(Math.random() * arr.length);
     card.style.backgroundImage = `url('/img/${arr[random]}')`;
     const picture = card.getAttribute('style')
-    console.log(picture)
     if (picture.includes('watermelon')) {
         a++;
         if (a >= 2) {
             const index = arr.indexOf('watermelon.svg');
             arr.splice(index, 1);
-            console.log(arr)
         }
     } else if (picture.includes('tomato')) {
         b++;
         if (b >= 2) {
             const index = arr.indexOf('tomato.svg');
             arr.splice(index, 1);
-            console.log(arr)
         }
     } else if (picture.includes('plum')) {
         c++;
         if (c >= 2) {
             const index = arr.indexOf('plum.svg');
             arr.splice(index, 1);
-            console.log(arr)
         }
     } else if (picture.includes('pear')) {
         d++;
         if (d >= 2) {
             const index = arr.indexOf('pear.svg')
             arr.splice(index, 1);
-            console.log(arr)
         }
     } else if (picture.includes('undefined')) {
-        card.style.backgroundImage = `url('/img/stop.svg')`;
+        card.style.backgroundImage = `url('/img/lemon.svg')`;
     }
 
 
@@ -98,3 +93,26 @@ function notMatch(first, second) {
         second = 0;
     }, 1500)
 }
+
+function endGame() {
+    let x = 0
+    cards.forEach(n => {
+        if (n.style.visibility == 'hidden') {
+            x++;
+            if (x == 12) {
+                const endText = document.createElement('h1');
+                const endBTN = document.createElement('span');
+                const mainText = document.querySelector('.Text')
+                mainText.style.height = '25%';
+                endBTN.textContent = '↺';
+                endText.textContent = 'You Win ';
+                endBTN.classList.add('EndBtn')
+                mainText.appendChild(endText);
+                mainText.appendChild(endBTN);
+                endBTN.addEventListener('click', () => window.location.reload())
+                clearInterval(myEnd);
+            }
+        }
+    })
+}
+const myEnd = setInterval(endGame, 1000);
