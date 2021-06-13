@@ -37,7 +37,7 @@ cards.forEach(n => {
 
 function randomWalpaper(card) {
     const random = Math.floor(Math.random() * arr.length);
-    card.style.backgroundImage = `url('/img/${arr[random]}')`;
+    card.style.backgroundImage = `url('./img/${arr[random]}')`;
     const picture = card.getAttribute('style')
     if (picture.includes('watermelon')) {
         a++;
@@ -64,7 +64,7 @@ function randomWalpaper(card) {
             arr.splice(index, 1);
         }
     } else if (picture.includes('undefined')) {
-        card.style.backgroundImage = `url('/img/lemon.svg')`;
+        card.style.backgroundImage = `url('./img/lemon.svg')`;
     }
 
 
